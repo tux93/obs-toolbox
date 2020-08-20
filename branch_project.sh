@@ -7,6 +7,10 @@
 echo "Enter the name of the project you want to branch"
 read -r project
 
+echo "Enter the name of the target Project"
+echo "If left empty will default to home:\$user:branches:\$project"
+read -r target
+
 osc co "${project}"
 
 (
@@ -15,7 +19,7 @@ osc co "${project}"
   do
     if [ -d "${d}" ]
     then
-      osc branch "${project}" "${d}"
+      osc branch "${project}" "${d}" "${target}"
     fi
   done
 )
